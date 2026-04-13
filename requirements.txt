@@ -1,0 +1,7 @@
+sentence-transformers
+torch
+transformers
+scikit-learn
+faiss-cpu
+numpy
+tqdm
