@@ -21,17 +21,20 @@ def load_training_examples(path):
 
     examples = []
 
-    for item in data:
+    for qid, item in data.items():
         query = item['query']
-        passage = item['passage']
-        label = item['label']
 
-        examples.append(
-            InputExample(
-                texts=[query, passage],
-                label=label
+        for p in item['passages']:
+            passage = p['passage']
+            label = p['label']
+
+            examples.append(
+                InputExample(
+                    texts=[query, passage],
+                    label=float(label)  # safer for SBERT
+                )
             )
-        )
+
     return examples
 
 if __name__ == "__main__":

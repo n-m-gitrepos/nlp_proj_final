@@ -7,8 +7,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 OUTPUT_DIR = os.path.join(BASE_DIR, "processed_data")
 
-NUM_QUERIES = 100        # sample NUM_QUERIES queries
+NUM_QUERIES = 2000        # sample NUM_QUERIES queries
 NEGATIVES = 4            # no. of negative candidates per query
+MAX_POSITIVES = 5        # no. relevant passages per query
 DEV_CANDIDATES = 100     # candidates per dev query
 
 random.seed(42)
@@ -103,48 +104,58 @@ def create_training_data(queries, passages, qrels):
     '''
     Creates training data for Sentence-BERT.
 
-    For each query:
-        - Add all positive (relevant) passages
-        - Add sampled negative (not relevant) passages
-
+    Only queries with at least MAX_POSITIVES relevant passages are included.
+    For each qualifying query, exactly MAX_POSITIVES positives are sampled,
+    and NEGATIVES negatives are sampled per positive (25 passages total).
+ 
     Returns:
-        list of dicts:
-        {
-            'query': str,
-            'passage': str,
-            'label': int (1=positive, 0=negative)
+        dict: {
+            query_id: {
+                'query': str,
+                'passages': [
+                    {'passage': str, 'label': int (1=positive, 0=negative)},
+                    ...  # 5 positives + 4 negatives each = 25 total
+                ]
+            }
         }
     '''
     passage_ids = list(passages.keys())
 
-    # Randomly sample NUM_QUERIES queries
-    query_ids = list(qrels.keys())
-    sampled_qids = random.sample(query_ids, min(NUM_QUERIES, len(query_ids)))
+    # Only keep queries that have at least MAX_POSITIVES relevant passages
+    eligible_qids = [qid for qid in qrels if len(qrels[qid]) >= MAX_POSITIVES]
 
-    training_data = []
+    # Randomly sample NUM_QUERIES from eligible queries
+    sampled_qids = random.sample(eligible_qids, min(NUM_QUERIES, len(eligible_qids)))
+
+    training_data = {}
 
     for qid in sampled_qids:
         query = queries[qid]
-        positives = qrels[qid]
+        all_positives = qrels[qid]
+
+        positives = set(random.sample(list(all_positives), MAX_POSITIVES))
+        passages_list = []
 
         for pid in positives:
             # positive pair
-            training_data.append({
-                'query': query,
+            passages_list.append({
                 'passage': passages[pid],
                 'label': 1
             })
 
-        # negative sampling
-        num_negatives = len(positives) * NEGATIVES
-        negatives = sample_negatives(passage_ids, positives, num_negatives)
+            # sample NEGATIVES negatives for each positive passage
+            neg_pids = sample_negatives(passage_ids, all_positives, NEGATIVES)
 
-        for pid in negatives:
-            training_data.append({
-                'query': query,
-                'passage': passages[pid],
-                'label': 0
-            })
+            for neg_pid in neg_pids:
+                passages_list.append({
+                    'passage': passages[neg_pid],
+                    'label': 0
+                })
+        training_data[qid] = {
+            'query': query,
+            'passages': passages_list
+        }
+        
     return training_data
 
 # -----------------------------
@@ -154,9 +165,10 @@ def create_dev_data(queries, passages, qrels):
     '''
     Creates the evaluation dataset.
 
-    For each query:
-        - Add all positive (relevant) passages
-        - Add sampled negative (not relevant) passages
+     For each query:
+        - Sample MAX_POSITIVES positives
+        - Sample remaining negatives to reach DEV_CANDIDATES
+        - Shuffle candidates
 
     Returns:
         dict:
@@ -168,17 +180,22 @@ def create_dev_data(queries, passages, qrels):
                 ]
             }
         }
-
     '''
     passage_ids = list(passages.keys())
     dev_data = {}
 
-    for qid in qrels:
+    # Only keep queries with enough positives
+    eligible_qids = [qid for qid in qrels if len(qrels[qid]) >= MAX_POSITIVES]
+
+    for qid in eligible_qids:
         if qid not in queries:
             continue
 
         query = queries[qid]
-        positives = qrels[qid]
+        all_positives = list(qrels[qid])
+
+        # --- sample fixed number of positives ---
+        positives = random.sample(all_positives, MAX_POSITIVES)
 
         candidates = []
 
@@ -189,9 +206,11 @@ def create_dev_data(queries, passages, qrels):
                 'label': 1
             })
 
-        # add negatives
-        num_negatives = max(0, DEV_CANDIDATES - len(positives))
-        negatives = sample_negatives(passage_ids, positives, num_negatives)
+        # --- sample unique negatives ---
+        num_negatives = DEV_CANDIDATES - MAX_POSITIVES
+
+        negative_pool = list(set(passage_ids) - set(all_positives))
+        negatives = random.sample(negative_pool, num_negatives)
 
         for pid in negatives:
             candidates.append({
@@ -199,11 +218,14 @@ def create_dev_data(queries, passages, qrels):
                 'label': 0
             })
 
-        # store query + its candidate passages
+        # --- shuffle candidates (important!) ---
+        random.shuffle(candidates)
+
         dev_data[qid] = {
             'query': query,
             'candidates': candidates
         }
+
     return dev_data
 
 # -----------------------------
