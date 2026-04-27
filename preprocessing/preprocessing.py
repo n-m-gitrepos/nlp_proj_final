@@ -9,7 +9,7 @@ OUTPUT_DIR = os.path.join(BASE_DIR, "processed_data")
 
 NUM_QUERIES = 2000        # sample NUM_QUERIES queries
 NEGATIVES = 4            # no. of negative candidates per query
-MAX_POSITIVES = 5        # no. relevant passages per query
+MAX_POSITIVES = 3      # no. relevant passages per query
 DEV_CANDIDATES = 100     # candidates per dev query
 
 random.seed(42)
