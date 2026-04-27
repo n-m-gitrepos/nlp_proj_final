@@ -16,3 +16,6 @@ processed_data/
 
 # OS files
 .DS_Store
+
+# model file (>80MB)
+model.pt

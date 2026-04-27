@@ -37,6 +37,13 @@ def load_training_examples(path):
 
     return examples
 
+def load_dev_data(path: str):
+    """
+    Returns dev_data dict as-is
+    """
+    with open(path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
 if __name__ == "__main__":
     train_examples = load_training_examples(DATA_PATH)
 
