@@ -1,0 +1,53 @@
+from sentence_transformers import InputExample
+import json
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_PATH = os.path.join(BASE_DIR, "processed_data", "train_pairs.json")
+
+def load_training_examples(path):
+    '''
+    Loads training examples from train_pairs.json and converts it
+    into Sentence-BERT InputExample format.
+    
+    Args:
+        path (str): path to train_pairs.json
+
+    Returns:
+        list[InputExample]: list of training examples
+    '''
+    with open(path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    examples = []
+
+    for qid, item in data.items():
+        query = item['query']
+
+        for p in item['passages']:
+            passage = p['passage']
+            label = p['label']
+
+            examples.append(
+                InputExample(
+                    texts=[query, passage],
+                    label=float(label)  # safer for SBERT
+                )
+            )
+
+    return examples
+
+def load_dev_data(path: str):
+    """
+    Returns dev_data dict as-is
+    """
+    with open(path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+if __name__ == "__main__":
+    train_examples = load_training_examples(DATA_PATH)
+
+    print(f"Loaded {len(train_examples)} training examples")
+
+    # sanity check
+    print(train_examples[0])
