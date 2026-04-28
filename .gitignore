@@ -1,1 +1,21 @@
-nlp-env/
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+.env/
+
+# Large / generated data
+data/
+processed_data/
+*.json
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# model file (>80MB)
+model.pt
