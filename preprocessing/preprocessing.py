@@ -7,9 +7,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 OUTPUT_DIR = os.path.join(BASE_DIR, "processed_data")
 
-NUM_QUERIES = 2000        # sample NUM_QUERIES queries
-NEGATIVES = 4            # no. of negative candidates per query
-MAX_POSITIVES = 3      # no. relevant passages per query
+NUM_QUERIES = 10000        # sample NUM_QUERIES queries
+NEGATIVES = 10          # no. of negative candidates per query
+MAX_POSITIVES = 2     # no. relevant passages per query
 DEV_CANDIDATES = 100     # candidates per dev query
 
 random.seed(42)
