@@ -10,7 +10,7 @@ venv/
 
 # Large / generated data
 processed_data/
-*.json
+
 
 # Logs
 *.log
@@ -41,3 +41,6 @@ lexbert_env/
 
 # data cache
 ~/.cache/huggingface/
+
+# png
+*.png
