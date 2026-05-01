@@ -20,3 +20,24 @@ processed_data/
 
 # model file (>80MB)
 model.pt
+
+
+# model checkpoints
+*.pt
+*.bin
+*.ckpt
+
+# huggingface model folders
+bert-wiki-backbone/
+bert-wiki-dapt/
+
+# python
+__pycache__/
+*.pyc
+lexbert_env/
+
+# jupyter
+.ipynb_checkpoints/
+
+# data cache
+~/.cache/huggingface/
