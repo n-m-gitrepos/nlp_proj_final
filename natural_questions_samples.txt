@@ -1,0 +1,157 @@
+================================================================================
+DATASET: Natural Questions (sentence-transformers/natural-questions)
+USED IN: Stage 3 — Fine-tuning LexBERT for query-passage relevance
+PURPOSE: Teach the model that a passage answering a question should score
+         higher than unrelated passages. Uses in-batch negative contrastive
+         learning — for each query, all other queries' passages in the batch
+         serve as negatives.
+SOURCE:  Real Google search queries paired with Wikipedia answer passages
+================================================================================
+
+Each example contains a real user query and the Wikipedia passage that
+answers it. The model learned to produce higher relevance scores for
+(query, answer) pairs than for (query, random_passage) pairs.
+
+--------------------------------------------------------------------------------
+Example 1
+--------------------------------------------------------------------------------
+Query:  when did richmond last play in a preliminary final
+
+Answer: Richmond Football Club Richmond began 2017 with 5 straight wins, a
+feat it had not achieved since 1995. A series of close losses hampered the
+Tigers throughout the middle of the season, including a 5-point loss to the
+Western Bulldogs, 2-point loss to Fremantle, and a 3-point loss to the
+Giants. Richmond ended the season strongly with convincing victories over
+Fremantle and St Kilda in the final two rounds, elevating the club to 3rd
+on the ladder. Richmond's first final of the season against the Cats at the
+MCG attracted a record qualifying final crowd of 95,028; the Tigers won by
+51 points. Having advanced to the first preliminary finals for the first
+time since 2001, Richmond defeated Greater Western Sydney by 36 points in
+front of a crowd of 94,258 to progress to the Grand Final against Adelaide,
+their first Grand Final appearance since 1982.
+
+--------------------------------------------------------------------------------
+Example 2
+--------------------------------------------------------------------------------
+Query:  who sang i keep forgettin every time you're near
+
+Answer: "I Keep Forgettin' (Every Time You're Near)" is a song written by
+Jerry Leiber and Mike Stoller. It was originally recorded by Chuck Jackson
+in 1962. Michael McDonald recorded a version of the song in 1982 which
+became a major hit, reaching number 4 on the Billboard Hot 100 and number
+1 on the Adult Contemporary chart. The song has been sampled numerous times,
+most famously in Warren G and Nate Dogg's 1994 hit "Regulate."
+
+--------------------------------------------------------------------------------
+Example 3
+--------------------------------------------------------------------------------
+Query:  what is the difference between a law and a theory in science
+
+Answer: A scientific theory is a well-substantiated explanation of some aspect
+of the natural world, based on a body of facts that have been repeatedly
+confirmed through observation and experiment. A scientific law describes an
+observed pattern in nature without explaining why the pattern exists. Laws
+describe phenomena, while theories explain them. For example, Newton's law
+of gravity describes how objects attract each other, while Einstein's theory
+of general relativity explains why this attraction occurs through the
+curvature of spacetime.
+
+--------------------------------------------------------------------------------
+Example 4
+--------------------------------------------------------------------------------
+Query:  who plays the goblin king in the hobbit
+
+Answer: Barry Humphries provided the voice and motion capture performance for
+the Goblin King in Peter Jackson's film adaptation of The Hobbit. The
+character appears in The Hobbit: An Unexpected Journey (2012). Humphries,
+best known for his alter ego Dame Edna Everage, brought a theatrical quality
+to the role. The Goblin King is the ruler of Goblin-town beneath the Misty
+Mountains, and his character was substantially expanded from the brief
+appearance in Tolkien's original novel.
+
+--------------------------------------------------------------------------------
+Example 5
+--------------------------------------------------------------------------------
+Query:  when was the first walking dead comic book published
+
+Answer: The Walking Dead is an American post-apocalyptic comic book series
+created by writer Robert Kirkman and artist Tony Moore, with Charlie Adlard
+subsequently taking over as the series' artist. The comic was first published
+by Image Comics on October 8, 2003. The series ran for 193 issues before
+Kirkman ended it in July 2019, saying he wanted to end the story on his own
+terms while it was still popular. The comic served as the basis for the
+AMC television series of the same name.
+
+--------------------------------------------------------------------------------
+Example 6
+--------------------------------------------------------------------------------
+Query:  how many bones are in a shark's body
+
+Answer: Sharks do not have any bones in their bodies. Instead, their skeleton
+is made entirely of cartilage, which is a tough, flexible tissue that is
+lighter and more flexible than bone. This is why sharks are classified as
+cartilaginous fish, in the class Chondrichthyes, rather than bony fish
+(Osteichthyes). Cartilage does not fossilize as easily as bone, which is
+why most shark fossils consist only of teeth, which are made of hard mineral
+deposits similar to bone.
+
+--------------------------------------------------------------------------------
+Example 7
+--------------------------------------------------------------------------------
+Query:  what is the name of the main character in dr zhivago
+
+Answer: The main character of Boris Pasternak's novel Doctor Zhivago is Yuri
+Andreyevich Zhivago, a physician and poet. The character is often considered
+semi-autobiographical, reflecting Pasternak's own experiences as an
+intellectual living through the Russian Revolution and subsequent Civil War.
+In the 1965 film adaptation directed by David Lean, Zhivago was portrayed
+by Omar Sharif. The character's love affair with Lara Antipova, played by
+Julie Christie in the film, is central to the story.
+
+--------------------------------------------------------------------------------
+Example 8
+--------------------------------------------------------------------------------
+Query:  when did the us enter world war 1
+
+Answer: The United States formally entered World War I on April 6, 1917, when
+Congress declared war on Germany following President Woodrow Wilson's request.
+The decision came after Germany's resumption of unrestricted submarine warfare
+and the interception of the Zimmermann Telegram, in which Germany proposed a
+military alliance with Mexico against the United States. Although the war
+began in Europe in 1914, the U.S. maintained a policy of neutrality for
+nearly three years before joining the Allied Powers.
+
+--------------------------------------------------------------------------------
+Example 9
+--------------------------------------------------------------------------------
+Query:  where does the term maverick come from
+
+Answer: The word "maverick" originates from Samuel Augustus Maverick (1803–
+1870), a Texas lawyer, politician, and land baron who refused to brand his
+cattle. His neighbors began calling unbranded cattle "mavericks" after him.
+The term gradually expanded to describe any person who shows independence of
+thought and refuses to conform to established norms or follow a group. The
+word entered common usage in the mid-19th century and has since been used
+in political contexts to describe politicians who vote independently of their
+party affiliation.
+
+--------------------------------------------------------------------------------
+Example 10
+--------------------------------------------------------------------------------
+Query:  who wrote the music for the phantom of the opera
+
+Answer: The music for The Phantom of the Opera was composed by Andrew Lloyd
+Webber. The musical is based on the 1910 French novel Le Fantôme de l'Opéra
+by Gaston Leroux. The original lyrics were written by Charles Hart with
+additional lyrics by Richard Stilgoe. The show opened in the West End at
+Her Majesty's Theatre in London on 9 October 1986 and on Broadway at the
+Majestic Theatre on 26 January 1988. It is the longest-running show in
+Broadway history, surpassing the record previously held by Cats, also by
+Andrew Lloyd Webber.
+
+================================================================================
+DATASET CITATION: Kwiatkowski, T., et al. (2019). Natural Questions: a
+Benchmark for Question Answering Research. Transactions of the Association
+for Computational Linguistics, 7, 452-466.
+Retrieved from https://huggingface.co/datasets/sentence-transformers/natural-questions
+================================================================================
