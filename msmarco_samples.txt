@@ -1,0 +1,348 @@
+================================================================================
+DATASET: MS MARCO v2.1 (microsoft/ms_marco)
+USED IN: Stage 4 — Fine-tuning LexBERT for passage ranking
+PURPOSE: Teach the model to rank relevant passages above irrelevant ones.
+         Each query has multiple passages labeled RELEVANT (is_selected=1)
+         or NOT RELEVANT (is_selected=0). The model learns pairwise ranking.
+SOURCE:  Real Bing search queries with human-annotated relevant passages
+         from web documents.
+================================================================================
+
+Each example shows a real user query followed by all its candidate passages.
+RELEVANT passages are ones human annotators marked as answering the query.
+The model is trained to assign higher scores to RELEVANT passages.
+
+Training used 200,000 pairwise triplets (query, positive_passage, negative_passage)
+with temperature-scaled cross-entropy loss over a (B, 2B) score matrix.
+
+================================================================================
+Example 1
+================================================================================
+Query: what is a corporation?
+
+  [RELEVANT    ] A corporation is a company or group of people authorized to act
+                 as a single entity (legally a person) and recognized as such in law.
+                 Early incorporated entities were established by charter. Most
+                 jurisdictions now allow the creation of new corporations through
+                 registration.
+
+  [NOT RELEVANT] The word "corporation" derives from corpus, the Latin word for body,
+                 or a "body of people." By the time of Justinian, Roman law recognized
+                 a range of corporate entities under the names universitas, corpus or
+                 collegium.
+
+  [NOT RELEVANT] A corporation sole is a legal entity consisting of a single
+                 ("sole") incorporated office, occupied by a single ("sole") natural
+                 person. This allows corporations (typically churches or governments)
+                 to pass without a succession of authority, property, rights and
+                 duties to another person when the original holder of the office dies
+                 or is otherwise removed.
+
+  [NOT RELEVANT] Corporate governance is the collection of mechanisms, processes and
+                 relations used by various parties to control and to operate
+                 corporations. Governance structures and principles identify the
+                 distribution of rights and responsibilities among different
+                 participants in the corporation.
+
+  [NOT RELEVANT] A cooperative differs from a corporation in that it has members, not
+                 shareholders, and they share decision-making authority. Cooperatives
+                 are typically classified as either consumer cooperatives or worker
+                 cooperatives.
+
+================================================================================
+Example 2
+================================================================================
+Query: why did rachel carson write an obligation to endure
+
+  [RELEVANT    ] Rachel Carson wrote "An Obligation to Endure" (Chapter 2 of Silent
+                 Spring, 1962) to argue that humans have a responsibility to protect
+                 the natural environment from chemical pesticides. Carson believed that
+                 since humans had introduced synthetic chemicals into the environment,
+                 they had an obligation to understand and mitigate the harm caused.
+                 The chapter challenges the chemical industry's claim that pesticides
+                 are safe and necessary.
+
+  [RELEVANT    ] Carson's central argument was that life has existed and adapted for
+                 millions of years, but the modern age of synthetic chemicals has
+                 introduced change at a pace too rapid for living things to adapt.
+                 She wrote that unlike natural hazards, man-made chemicals represent
+                 a threat that living organisms have had no time to adjust to, making
+                 human intervention both the cause of and potential solution to
+                 environmental damage.
+
+  [NOT RELEVANT] Silent Spring is an environmental science book by American biologist
+                 Rachel Carson. The book was published on 27 September 1962, documenting
+                 the adverse environmental effects caused by the indiscriminate use of
+                 pesticides. Carson accused the chemical industry of spreading
+                 disinformation, and public officials of accepting the industry's
+                 marketing claims unquestioningly.
+
+  [NOT RELEVANT] Rachel Louise Carson (May 27, 1907 – April 14, 1964) was an American
+                 marine biologist, author, and conservationist whose book Silent Spring
+                 and other writings are credited with advancing the global environmental
+                 movement. Carson was posthumously awarded the Presidential Medal of
+                 Freedom by President Jimmy Carter.
+
+  [NOT RELEVANT] DDT (dichlorodiphenyltrichloroethane) is a colorless, tasteless, and
+                 almost odorless crystalline chemical compound that was originally
+                 developed as an insecticide. It was used widely during World War II
+                 to control malaria and typhus among civilians and troops.
+
+================================================================================
+Example 3
+================================================================================
+Query: symptoms of a dying mouse
+
+  [RELEVANT    ] Signs that a mouse may be dying include: lethargy and lack of
+                 movement, labored or rapid breathing, loss of appetite and weight
+                 loss, hunched posture, ruffled fur, discharge from the eyes or nose,
+                 and loss of balance or coordination. A dying mouse may also become
+                 cold to the touch as its body temperature drops, and may isolate
+                 itself in a corner of its enclosure away from other mice.
+
+  [NOT RELEVANT] Mice are small rodents that are found in nearly every country and
+                 type of terrain. They are known to invade homes and other buildings
+                 in search of food and shelter. A mouse can squeeze through a gap
+                 as small as a dime.
+
+  [NOT RELEVANT] House mice can be destructive in agricultural areas. They consume
+                 and contaminate food meant for humans, livestock, or other animals.
+                 They also cause structural damage by gnawing through walls, floors,
+                 and electrical wires.
+
+  [NOT RELEVANT] Rodenticides are pesticides that kill rodents. They are commonly
+                 used to control rat and mouse populations. Most rodenticides work
+                 by causing internal bleeding, though some affect the nervous system.
+
+  [NOT RELEVANT] Mice used in laboratory research are often specially bred strains.
+                 They are valuable in biomedical research because they share
+                 approximately 85% of protein-coding regions with humans.
+
+================================================================================
+Example 4
+================================================================================
+Query: average number of lightning strikes per day
+
+  [RELEVANT    ] On average, lightning strikes the Earth about 100 times per second,
+                 which equates to approximately 8 million strikes per day. This
+                 estimate comes from satellite-based lightning detection systems
+                 operated by NASA. About 70-80% of lightning strikes occur in the
+                 tropics, where warm, moist air creates the convective activity
+                 needed to produce thunderstorms.
+
+  [NOT RELEVANT] Lightning is a naturally occurring electrostatic discharge during
+                 which two electrically charged regions, both in the atmosphere or
+                 with one on the ground, temporarily equalize their charges.
+
+  [NOT RELEVANT] The United States experiences about 25 million lightning strikes
+                 per year, or roughly 70,000 per day. Florida is known as the
+                 "lightning capital" of the United States due to its high frequency
+                 of thunderstorms.
+
+  [NOT RELEVANT] Thunder is the sound caused by the rapid expansion of air surrounding
+                 and heated by a lightning discharge. Because light travels faster
+                 than sound, lightning is seen before thunder is heard.
+
+  [NOT RELEVANT] Ball lightning is an unexplained atmospheric electrical phenomenon.
+                 The term refers to reports of luminescent spherical objects that
+                 vary from pea-sized to several metres in diameter. It is usually
+                 associated with thunderstorms, but unlike lightning, it persists
+                 for much longer.
+
+================================================================================
+Example 5
+================================================================================
+Query: what causes high white blood cell count
+
+  [RELEVANT    ] A high white blood cell count (leukocytosis) can be caused by many
+                 conditions, including infection (bacterial, viral, or fungal),
+                 inflammation, immune system disorders, bone marrow disorders, and
+                 certain medications such as corticosteroids. In some cases, it may
+                 indicate leukemia or other blood cancers. The normal white blood
+                 cell count is between 4,500 and 11,000 cells per microliter of blood.
+
+  [RELEVANT    ] White blood cells (WBCs), also called leukocytes, are a component
+                 of blood that helps the body fight infection and other diseases. When
+                 the body detects a foreign substance or pathogen, it increases WBC
+                 production to combat the threat. Stress, both physical (surgery,
+                 injury) and emotional, can also temporarily elevate WBC counts.
+
+  [NOT RELEVANT] Red blood cells (RBCs), also called erythrocytes, are the most
+                 common type of blood cell and the vertebrate's principal means of
+                 delivering oxygen to the body tissues via blood flow through the
+                 circulatory system.
+
+  [NOT RELEVANT] Blood is a body fluid in humans and other animals that delivers
+                 necessary substances such as nutrients and oxygen to the cells and
+                 transports metabolic waste products away from those same cells.
+
+  [NOT RELEVANT] Platelets, also called thrombocytes, are a component of blood whose
+                 function is to react to bleeding from blood vessel injury by
+                 clumping, thereby initiating a blood clot.
+
+================================================================================
+Example 6
+================================================================================
+Query: how does photosynthesis work
+
+  [RELEVANT    ] Photosynthesis is the process by which plants, algae, and some
+                 bacteria convert light energy into chemical energy stored as glucose.
+                 It occurs in two stages: the light-dependent reactions in the
+                 thylakoid membranes, where sunlight splits water molecules to
+                 release oxygen and create ATP and NADPH, and the light-independent
+                 reactions (Calvin cycle) in the stroma, where CO2 is fixed into
+                 glucose using the ATP and NADPH produced in the first stage.
+
+  [RELEVANT    ] The overall equation for photosynthesis is:
+                 6CO2 + 6H2O + light energy → C6H12O6 + 6O2
+                 Plants absorb sunlight using the pigment chlorophyll, which is
+                 located in organelles called chloroplasts. The green color of most
+                 plant leaves comes from chlorophyll, which absorbs red and blue
+                 light but reflects green light.
+
+  [NOT RELEVANT] Cellular respiration is the process by which biological fuels are
+                 oxidized in the presence of an inorganic electron acceptor such as
+                 oxygen to produce large amounts of energy, to drive the bulk
+                 production of ATP.
+
+  [NOT RELEVANT] Chlorophyll is any of several related green pigments found in the
+                 mesosomes of cyanobacteria and in the chloroplasts of algae and
+                 plants. Its name is derived from the Greek words for pale green and
+                 leaf.
+
+  [NOT RELEVANT] Stomata are pores found in the epidermis of leaves, stems, and
+                 other organs that facilitate gas exchange. The pore is formed by a
+                 pair of specialized parenchyma cells known as guard cells.
+
+================================================================================
+Example 7
+================================================================================
+Query: what is the boiling point of water in celsius
+
+  [RELEVANT    ] The boiling point of water at standard atmospheric pressure (1 atm
+                 or 101.325 kPa) is 100 degrees Celsius (212 degrees Fahrenheit or
+                 373.15 Kelvin). At higher altitudes where atmospheric pressure is
+                 lower, water boils at temperatures below 100°C. For example, at
+                 the top of Mount Everest (elevation ~8,849 m), water boils at
+                 approximately 70°C due to the significantly reduced air pressure.
+
+  [NOT RELEVANT] The melting point of water (ice) is 0 degrees Celsius at standard
+                 atmospheric pressure. Water is unusual among common substances in
+                 that its solid form (ice) is less dense than its liquid form.
+
+  [NOT RELEVANT] The specific heat capacity of water is 4,182 J/(kg·K), one of the
+                 highest of any common substance. This means water requires more
+                 energy to heat up than most other materials, making it useful as
+                 a coolant and heat storage medium.
+
+  [NOT RELEVANT] Steam is water in the gas phase. At sea level, steam is produced
+                 when water reaches its boiling point of 100°C. Steam has many
+                 industrial applications, including driving turbines in power plants.
+
+  [NOT RELEVANT] Heavy water (deuterium oxide, D2O) is a form of water that contains
+                 the hydrogen isotope deuterium rather than ordinary hydrogen. Its
+                 boiling point is slightly higher than ordinary water, at 101.4°C.
+
+================================================================================
+Example 8
+================================================================================
+Query: when was the eiffel tower built
+
+  [RELEVANT    ] The Eiffel Tower was built from 1887 to 1889 as the centerpiece of
+                 the 1889 World's Fair (Exposition Universelle), which celebrated the
+                 centennial of the French Revolution. It was designed by Gustave
+                 Eiffel's engineering company and was the world's tallest man-made
+                 structure for 41 years until the Chrysler Building was completed in
+                 New York City in 1930. Construction took 2 years, 2 months, and 5 days.
+
+  [NOT RELEVANT] The Eiffel Tower is a wrought-iron lattice tower on the Champ de
+                 Mars in Paris, France. It is named after the engineer Gustave Eiffel,
+                 whose company designed and built the tower. Locally nicknamed "La
+                 dame de fer" (French for "Iron Lady"), it was constructed as a
+                 temporary exhibit.
+
+  [NOT RELEVANT] The Chrysler Building is an Art Deco skyscraper in Midtown Manhattan,
+                 New York City, standing at 319 m (1,047 ft). At its completion in
+                 1930, it was the world's tallest building for approximately 11 months
+                 before it was surpassed by the Empire State Building.
+
+  [NOT RELEVANT] The 1889 World's Fair (Exposition Universelle) was a world's fair
+                 held in Paris, France, from May 6 to October 31, 1889. It was
+                 organized to celebrate the centennial of the storming of the Bastille,
+                 a seminal event of the French Revolution.
+
+  [NOT RELEVANT] Iron is a chemical element with symbol Fe and atomic number 26. It
+                 is a metal that belongs to the first transition series and group 8
+                 of the periodic table. It is the most common element by mass forming
+                 the Earth's core.
+
+================================================================================
+Example 9
+================================================================================
+Query: how long does it take for food to digest
+
+  [RELEVANT    ] The time it takes for food to move through your entire digestive
+                 system — from eating to elimination — is typically 24 to 72 hours.
+                 Food spends 2 to 4 hours in the stomach being broken down into
+                 chyme. It then moves to the small intestine for 2 to 6 hours where
+                 most nutrient absorption occurs. The remaining material spends 10
+                 to 59 hours in the large intestine before elimination.
+
+  [NOT RELEVANT] The digestive system is a group of organs working together to convert
+                 food into energy and basic nutrients to feed the entire body. Food
+                 passes through a long tube inside the body known as the alimentary
+                 canal or the gastrointestinal tract (GI tract).
+
+  [NOT RELEVANT] Enzymes play a crucial role in digestion by breaking down complex
+                 food molecules into simpler ones. Amylase in saliva begins digesting
+                 carbohydrates in the mouth. Pepsin in the stomach breaks down
+                 proteins, and lipase breaks down fats in the small intestine.
+
+  [NOT RELEVANT] The liver is an organ with a wide range of functions, including
+                 detoxification of various metabolites, synthesis of proteins, and
+                 production of biochemicals necessary for digestion and growth.
+
+  [NOT RELEVANT] Fiber is a type of carbohydrate that the body can't digest. Though
+                 most carbohydrates are broken down into sugar molecules, fiber
+                 cannot be broken down into sugar molecules, and instead it passes
+                 through the body undigested.
+
+================================================================================
+Example 10
+================================================================================
+Query: what is the speed of light
+
+  [RELEVANT    ] The speed of light in a vacuum is exactly 299,792,458 metres per
+                 second (approximately 3×10^8 m/s or 186,282 miles per second).
+                 This value was fixed by the International Bureau of Weights and
+                 Measures in 1983 and forms the basis for the definition of the
+                 metre. The symbol c represents the speed of light, derived from
+                 the Latin word "celeritas" meaning swiftness. No object with mass
+                 can reach or exceed the speed of light.
+
+  [NOT RELEVANT] Albert Einstein's special theory of relativity, published in 1905,
+                 established that the speed of light in a vacuum is the same for all
+                 observers regardless of their relative motion or the motion of the
+                 light source.
+
+  [NOT RELEVANT] A light-year is the distance that light travels in one Julian year
+                 in a vacuum, which is approximately 9.461 trillion kilometres
+                 (5.879 trillion miles). The light-year is used to measure distances
+                 in astronomy.
+
+  [NOT RELEVANT] Radio waves are a type of electromagnetic radiation with wavelengths
+                 in the electromagnetic spectrum longer than infrared light. Like all
+                 electromagnetic waves, they travel at the speed of light.
+
+  [NOT RELEVANT] Optical fiber uses light to transmit data at very high speeds.
+                 However, light traveling through fiber optic cables moves at about
+                 two-thirds the speed of light in a vacuum due to the refractive
+                 index of the glass or plastic fiber material.
+
+================================================================================
+DATASET CITATION: Nguyen, T., et al. (2016). MS MARCO: A Human Generated
+MAchine Reading COmprehension Dataset. In Proceedings of the Workshop on
+Cognitive Computation: Integrating neural and symbolic approaches 2016
+co-located with the 30th Annual Conference on Neural Information Processing
+Systems. Retrieved from https://huggingface.co/datasets/microsoft/ms_marco
+================================================================================
