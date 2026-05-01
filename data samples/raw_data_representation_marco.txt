@@ -1,0 +1,54 @@
+================================================================================
+DATASET: MS MARCO (Raw TSV Files)
+LOCATION: data/ directory
+PURPOSE: The raw source data for collections, queries, and relevance labels.
+FORMAT:  Tab-Separated Values (.tsv)
+SOURCE:  Microsoft MS MARCO Passage Ranking Dataset
+================================================================================
+
+This file describes the schema and representation for the primary data files
+used in the SBERT and LexBERT pipelines.
+
+================================================================================
+1. COLLECTIONS (data/collection.tsv)
+================================================================================
+Schema: [passage_id] [passage_text]
+
+Examples:
+0	The presence of communication amid scientific minds was equally important to the success of the Manhattan Project as scientific intellect was. The only cloud hanging over the impressive achievement of the atomic researchers and engineers is what their success truly meant; hundreds of thousands of innocent lives obliterated.
+1	The Manhattan Project and its atomic bomb helped bring an end to World War II. Its legacy of peaceful uses of atomic energy continues to have an impact on history and science.
+2	Essay on The Manhattan Project - The Manhattan Project The Manhattan Project was to see if making an atomic bomb possible. The success of this project would forever change the world forever making it known that something this powerful can be manmade.
+3	The Manhattan Project was the name for a project conducted during World War II, to develop the first atomic bomb. It refers specifically to the period of the project from 194 … 2-1946 under the control of the U.S. Army Corps of Engineers, under the administration of General Leslie R. Groves.
+4	versions of each volume as well as complementary websites. The first website–The Manhattan Project: An Interactive History–is available on the Office of History and Heritage Resources website, http://www.cfo. doe.gov/me70/history. The Office of History and Heritage Resources and the National Nuclear Security
+
+================================================================================
+2. QUERIES (data/queries.train.tsv, data/queries.dev.tsv)
+================================================================================
+Schema: [query_id]  [query_text]
+
+Examples:
+121352	define extreme
+634306	what does chattel mean on credit history
+920825	what was the great leap forward brainly
+510633	tattoo fixers how much does it cost
+737889	what is decentralization process.
+
+================================================================================
+3. RELEVANCE LABELS / QRELS (data/qrels.train.tsv, data/qrels.dev.tsv)
+================================================================================
+Schema: [query_id]  [unused_zero]  [passage_id]  [relevance_score]
+Note: In MS MARCO, relevance_score is always 1 for positive pairs.
+
+Examples:
+1185869	0	0	1
+1185868	0	16	1
+597651	0	49	1
+403613	0	60	1
+1183785	0	389	1
+
+================================================================================
+SUMMARY
+================================================================================
+These raw files are processed by the scripts in /preprocessing/ to create 
+the JSON training pairs and evaluation candidates used by the models.
+================================================================================
