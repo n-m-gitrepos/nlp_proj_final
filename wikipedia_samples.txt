@@ -1,0 +1,131 @@
+================================================================================
+DATASET: Wikipedia (wikimedia/wikipedia, 20231101.en)
+USED IN: Stage 2 — Domain Adaptive Pretraining (DAPT) via Masked Language Modeling
+PURPOSE: Teach BERT to better understand factual, encyclopedic text before ranking
+================================================================================
+
+Each article below was chunked into ~100-word passages for MLM pretraining.
+BERT was trained to predict 15% of randomly masked tokens in each chunk.
+
+----------------------------------------
+Article 1: Anarchism
+----------------------------------------
+Anarchism is a political philosophy and movement that is sceptical of all
+justifications for authority and seeks to abolish the institutions it claims
+maintain unnecessary coercion and hierarchy, typically including, though not
+always limited to, the state and capitalism. Anarchism advocates for the
+replacement of the state with stateless societies and voluntary free
+associations. As a historically left-wing movement, anarchism is usually
+described as the libertarian wing of the socialist movement. Although many
+anarchist schools of thought share libertarian, anti-authoritarian,
+anti-statist, and anti-capitalist principles, anarchism can be defined more
+specifically by its rejection of coercive authority in the conduct of human
+relations.
+
+----------------------------------------
+Article 2: Autism
+----------------------------------------
+Autism, formally called autism spectrum disorder (ASD) or autism spectrum
+condition (ASC), is a neurodevelopmental disorder characterized by deficits
+in social communication and social interaction, and repetitive or restricted
+patterns of behaviors, interests, or activities, which can include hypo- and
+hypersensitivity to sensory input. Autism is a spectrum disorder, meaning
+that it can manifest very differently in each person. For example, some are
+nonspeaking, while others have proficient spoken language. Because of this,
+there is wide variation in the support needs of people across the autism
+spectrum.
+
+----------------------------------------
+Article 3: Albedo
+----------------------------------------
+Albedo is the fraction of sunlight that is diffusely reflected by a body. It
+is measured on a scale from 0 (corresponding to a black body that absorbs
+all incident radiation) to 1 (corresponding to a body that reflects all
+incident radiation). Surface albedo is defined as the ratio of radiosity J_e
+to the irradiance E_e (flux per unit area) received by a surface. The
+proportion reflected is not only determined by properties of the surface
+itself, but also by the spectral and angular distribution of solar radiation
+reaching the Earth's surface.
+
+----------------------------------------
+Article 4: A (musical note)
+----------------------------------------
+A is the sixth note of the fixed-do solfège. It has a frequency of 440 Hz,
+which is used as the standard for musical pitch. The note name A is
+associated with the submediant of the C major scale. The A above middle C
+is commonly used as a tuning standard for Western music, with the
+International Organization for Standardization settling on 440 Hz in 1955.
+In scientific pitch notation, middle A is called A4.
+
+----------------------------------------
+Article 5: Algeria
+----------------------------------------
+Algeria, officially the People's Democratic Republic of Algeria, is a country
+in the Maghreb region of North Africa. It is the largest country in Africa
+and the Arab world by area. Algeria is bordered to the northeast by Tunisia,
+to the east by Libya, to the southeast by Niger, to the southwest by Mali
+and Mauritania, to the west by Morocco, and to the north by the Mediterranean
+Sea. The capital and largest city is Algiers, located in the far north of
+the country on the Mediterranean coast.
+
+----------------------------------------
+Article 6: Aristotle
+----------------------------------------
+Aristotle was an Ancient Greek philosopher and polymath. His writings cover a
+broad range of subjects spanning the natural sciences, philosophy, linguistics,
+economics, politics, psychology, and the arts. As the founder of the
+Peripatetic school of philosophy in the Lyceum in Athens, he began the wider
+Aristotelian tradition that followed, which set the groundwork for the
+development of modern science. Aristotle is widely considered among the
+greatest and most influential thinkers and teachers in the history of Western
+philosophy.
+
+----------------------------------------
+Article 7: Ampere
+----------------------------------------
+The ampere, often shortened to amp, symbol A, is the base unit of electric
+current in the International System of Units (SI). One ampere is equal to
+one coulomb per second. The ampere is defined by taking the fixed numerical
+value of the elementary charge e to be 1.602176634 × 10−19 when expressed
+in the unit C, which is equal to A⋅s. The ampere was originally defined as
+one tenth of the CGS system electromagnetic unit of current, the abampere.
+
+----------------------------------------
+Article 8: Australian rules football
+----------------------------------------
+Australian rules football, officially known as Australian football, and
+colloquially known as Aussie rules or just football within Australia, is a
+contact sport played between two teams of 18 players on an oval field,
+often a modified cricket ground. The primary objective of the game is to
+score goals by kicking the ball through the two tall goal posts at each
+end of the ground. The ball may be passed between players by handpass,
+where the ball is held in one hand and punched with the closed fist of the
+other hand, or by kicking.
+
+----------------------------------------
+Article 9: Ajax (mythology)
+----------------------------------------
+In Greek mythology, Ajax or Aias was a Greek hero, the son of king Telamon
+of Salamis and half-brother of Teucer. He plays a pivotal role in Homer's
+Iliad, and the tragedy Ajax written by Sophocles. In the Iliad, Ajax is
+the greatest of all Greek warriors after Achilles. He has undying loyalty
+to his fellow Greeks and is particularly devoted to Achilles, whom he
+greatly admires. Ajax is known for his great physical strength, his skill
+in battle, his reliability, and his integrity.
+
+----------------------------------------
+Article 10: Afghanistan
+----------------------------------------
+Afghanistan, officially the Islamic Emirate of Afghanistan, is a landlocked
+country located at the crossroads of Central Asia and South Asia. It is
+bordered by Pakistan to the east and south, Iran to the west, Turkmenistan
+to the northwest, Uzbekistan to the north, Tajikistan to the northeast, and
+China to the northeast and east. Kabul is the country's largest city and
+serves as its capital. Afghanistan has a population of around 41 million
+people. It is the 37th-largest country by area, spanning 652,864 square
+kilometers (252,072 square miles).
+
+================================================================================
+DATASET CITATION: Wikimedia Foundation. (2023). Wikipedia (20231101.en).
+Retrieved from https://huggingface.co/datasets/wikimedia/wikipedia
+================================================================================
